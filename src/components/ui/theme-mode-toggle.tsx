@@ -25,7 +25,7 @@ export function ThemeModeToggle() {
         <Tooltip>
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
-              <Button variant="default" size="icon">
+              <Button variant="ghost" size="icon">
                 <Sun
                   className={`h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 `}
                 />
@@ -47,7 +47,7 @@ export function ThemeModeToggle() {
         >
           <DropdownMenuItem
             className={`flex gap-2 rounded-none ${
-              theme === "light" ? "text-primary-foreground bg-primary" : ""
+              theme === "light" ? "text-primary" : ""
             }`}
             onClick={() => setTheme("light")}
           >
@@ -57,7 +57,7 @@ export function ThemeModeToggle() {
 
           <DropdownMenuItem
             className={`flex gap-2 rounded-none ${
-              theme === "dark" ? "text-primary-foreground bg-primary" : ""
+              theme === "dark" ? "text-primary" : ""
             }`}
             onClick={() => setTheme("dark")}
           >
@@ -67,7 +67,7 @@ export function ThemeModeToggle() {
 
           <DropdownMenuItem
             className={`flex gap-2 rounded-none ${
-              theme === "system" ? "text-primary-foreground bg-primary" : ""
+              theme === "system" ? "text-primary" : ""
             }`}
             onClick={() => setTheme("system")}
           >
