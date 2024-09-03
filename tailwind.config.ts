@@ -54,6 +54,15 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              color: "var(--primary)",
+            },
+          },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
