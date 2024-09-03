@@ -51,7 +51,7 @@ export default async function BlogPost({ params }: BlogPostParams) {
           <Image src={post.metadata.image} alt={post.metadata.title} />
         )}
       </header>
-      <article className="prose dark:prose-invert max-w-none">
+      <article className="prose dark:prose-invert max-w-none mb-4">
         {post.content}
       </article>
     </section>
