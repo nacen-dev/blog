@@ -5,7 +5,7 @@ import { ThemeModeToggle } from "./theme-mode-toggle";
 
 export function Header() {
   return (
-    <header className="sticky top-0 flex">
+    <header className="flex">
       <Navbar />
       <div className="ml-auto">
         <ThemeModeToggle />
