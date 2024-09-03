@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export async function BlogPosts() {
   let blogPosts = await getBlogPosts();
-  console.table(blogPosts);
 
   return (
     <div>
