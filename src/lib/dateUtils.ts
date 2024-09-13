@@ -43,3 +43,5 @@ export function formatDate(date: string, includeRelative = false) {
 
   return `${fullDate} (${formattedDate})`;
 }
+
+export const DAY_IN_SECONDS = 86400;
