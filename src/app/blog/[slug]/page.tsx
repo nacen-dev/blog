@@ -1,7 +1,10 @@
 import { baseUrl } from "@/app/sitemap";
+import { DAY_IN_SECONDS } from "@/lib/dateUtils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug, getBlogPostsSlug } from "../util";
+
+export const revalidate = DAY_IN_SECONDS;
 
 type BlogPostParams = {
   params: {

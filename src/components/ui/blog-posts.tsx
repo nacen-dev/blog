@@ -1,12 +1,14 @@
-import { getBlogPosts, sortBlogPostsDescending } from "@/app/blog/util";
+import { MDXData, sortBlogPostsDescending } from "@/app/blog/util";
 import { formatDate } from "@/lib/dateUtils";
 import Link from "next/link";
 
-export async function BlogPosts() {
-  let blogPosts = await getBlogPosts();
+type Props = {
+  blogPosts: MDXData[];
+};
 
+export async function BlogPosts({ blogPosts }: Props) {
   return (
-    <div>
+    <section>
       {sortBlogPostsDescending(blogPosts).map((post) => (
         <Link
           key={post.slug}
@@ -23,6 +25,6 @@ export async function BlogPosts() {
           </div>
         </Link>
       ))}
-    </div>
+    </section>
   );
 }
