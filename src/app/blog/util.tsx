@@ -30,10 +30,10 @@ export const blogPostContentDirectory = path.join(
   "posts"
 );
 
-export function getMDXFiles(directory: string) {
+export function getMDXFiles(directory: string): string[] {
   return fs
     .readdirSync(directory)
-    .filter((file) => path.extname(file) === ".mdx");
+    .filter((file) => path.extname(file).toLowerCase() === ".mdx");
 }
 
 const Pre = (props: any) => {
