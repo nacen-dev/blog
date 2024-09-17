@@ -122,6 +122,8 @@ export async function getBlogPosts(): Promise<MDXData[]> {
 }
 
 export function sortBlogPostsDescending(blogPostsData: MDXData[]): MDXData[] {
+  if (!blogPostsData) return [];
+
   return blogPostsData.sort((a, b) =>
     new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt) ? -1 : 1
   );
