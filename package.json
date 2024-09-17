@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.438.0",
+    "memfs": "^4.11.1",
     "next": "14.2.7",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
@@ -48,5 +49,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5",
     "vitest": "^2.1.1"
-  }
+  },
+  "type": "module"
 }
