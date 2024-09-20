@@ -6,7 +6,9 @@ type Props = {
   blogPosts: MDXData[];
 };
 
-export async function BlogPosts({ blogPosts }: Props) {
+export function BlogPosts({ blogPosts }: Props) {
+  if (blogPosts.length === 0) return <p>No blog post found</p>;
+
   return (
     <section>
       {sortBlogPostsDescending(blogPosts).map((post) => (
