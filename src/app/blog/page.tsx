@@ -1,5 +1,5 @@
 import { BlogPosts } from "@/components/ui/blog-posts";
-import { getBlogPosts } from "./util";
+import { blogPostContentDirectory, getBlogPosts } from "./util";
 
 export const metadata = {
   title: "Vincent's blog",
@@ -8,6 +8,6 @@ export const metadata = {
 };
 
 export default async function BlogPage() {
-  const blogPosts = await getBlogPosts();
+  const blogPosts = await getBlogPosts(blogPostContentDirectory);
   return <BlogPosts blogPosts={blogPosts} />;
 }

@@ -109,7 +109,9 @@ export async function getBlogPostBySlug(slug: string): Promise<MDXData> {
   return await getMDXData(filePath);
 }
 
-export async function getBlogPosts(): Promise<MDXData[]> {
+export async function getBlogPosts(
+  blogPostContentDirectory: string
+): Promise<MDXData[]> {
   let files = getMDXFiles(blogPostContentDirectory);
   const blogPosts = await Promise.all(
     files.map(
