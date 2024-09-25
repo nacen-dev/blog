@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, NavLink } from "./nav";
+import { Navbar, NavLink } from "./nav-bar";
 import { ThemeModeToggle } from "./theme-mode-toggle";
 
 const navLinks: NavLink[] = [
