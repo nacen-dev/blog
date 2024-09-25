@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Navbar, NavLink } from "./nav-bar";
 
@@ -9,9 +9,9 @@ describe("Navbar", () => {
       { title: "contact", href: "/contact" },
       { title: "blog", href: "/blog" },
     ];
-    const { getAllByRole } = render(<Navbar navLinks={navLinks} />);
+    render(<Navbar navLinks={navLinks} />);
 
-    const links = getAllByRole("link").map((link) => ({
+    const links = screen.getAllByRole("link").map((link) => ({
       title: link.textContent,
       href: link.getAttribute("href"),
     }));

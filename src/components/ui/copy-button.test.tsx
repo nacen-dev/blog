@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { CopyButton } from "./copy-button";
@@ -8,8 +8,8 @@ describe("CopyButton", () => {
     const textToCopy = "test copy";
     const user = userEvent.setup();
 
-    const { getByRole } = render(<CopyButton text={textToCopy} />);
-    const button = getByRole("button");
+    render(<CopyButton text={textToCopy} />);
+    const button = screen.getByRole("button");
     await user.click(button);
     const copiedText = await navigator.clipboard.readText();
     expect(copiedText).toEqual(textToCopy);
