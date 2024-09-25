@@ -10,19 +10,16 @@ import {
 } from "@/components/ui/navigation-menu";
 import { usePathname } from "next/navigation";
 
-type NavLink = {
+export type NavLink = {
   title: string;
   href: string;
 };
 
-const navLinks: NavLink[] = [
-  {
-    title: "Home",
-    href: "/",
-  },
-];
+type Props = {
+  navLinks: NavLink[];
+};
 
-export function Navbar() {
+export function Navbar({ navLinks }: Props) {
   const pathName = usePathname();
 
   return (
