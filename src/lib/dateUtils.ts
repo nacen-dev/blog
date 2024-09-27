@@ -15,11 +15,13 @@ export function formatDate(date: string, includeRelative = false) {
   let formattedDate = "";
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`;
+    formattedDate = `${yearsAgo} ${yearsAgo === 1 ? "year ago" : "years ago"}`;
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`;
+    formattedDate = `${monthsAgo} ${
+      monthsAgo === 1 ? "month ago" : "months ago"
+    }`;
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`;
+    formattedDate = `${daysAgo} ${daysAgo === 1 ? "day ago" : "days ago"}`;
   } else {
     formattedDate = "Today";
   }
