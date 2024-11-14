@@ -38,9 +38,9 @@ export function getMDXFiles(directory: string): string[] {
 
 const Pre = (props: any) => {
   return (
-    <pre {...props}>
+    <pre {...props} className="relative overflow-hidden">
       {props.children}
-      <div>
+      <div className="absolute right-4 top-2">
         <CopyButton text={props.raw} />
       </div>
     </pre>
