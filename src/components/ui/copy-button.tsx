@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "./button";
 
 type CopyButtonProps = {
   text: string;
@@ -19,8 +20,8 @@ export const CopyButton = ({ text }: CopyButtonProps) => {
   };
 
   return (
-    <button disabled={isCopied} onClick={copy}>
+    <Button disabled={isCopied} onClick={copy} variant={"ghost"}>
       {isCopied ? "Copied!" : "Copy"}
-    </button>
+    </Button>
   );
 };
