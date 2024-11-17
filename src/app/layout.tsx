@@ -25,7 +25,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="antialiased mt-8 mx-[10%] sm:mx-[15%] md:mx-[20%]">
+          <div className="antialiased mt-8 mx-[5%] sm:mx-[10%] md:mx-[15%]">
             <Header />
 
             <main className="mt-8">{children}</main>
