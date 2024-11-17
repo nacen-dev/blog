@@ -49,7 +49,9 @@ export default async function BlogPost({ params }: BlogPostParams) {
         <h1 className="font-bold text-4xl tracking-tighter mb-4">
           {post.metadata.title}
         </h1>
-        <p className="text-center">{formatDate(post.metadata.publishedAt)}</p>
+        <time dateTime={post.metadata.publishedAt}>
+          {formatDate(post.metadata.publishedAt)}
+        </time>
         {post.metadata.image && (
           <Image src={post.metadata.image} alt={post.metadata.title} />
         )}
