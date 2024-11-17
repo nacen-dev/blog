@@ -21,7 +21,7 @@ By sharing the same development server and configuration as Vite, Vitest provide
 
 ## Native ESM Support
 
-One challenge with traditional test runners, such as Jest, is their limited support for ES Modules (ESM).
+One challenge with traditional test runners, such as Jest, is their limited support for [ES Modules (ESM)](https://nodejs.org/api/esm.html).
 
 While working on this blog, I encountered a scenario where I needed to use a Node package that was ESM-only, meaning it only supported ES module syntax (import/export). Attempting to use Jest in this setup was frustrating, as Jest ships with experimental support for ESM at the time.
 
@@ -75,7 +75,7 @@ As you can see there is not quite a lot of difference in the syntax, so migratin
 
 ### Vitest compatibility with Jest's extended matchers
 
-Vitest's compatibility extends to Jest’s extended matchers, like those from jest-extended. To use them, simply create a Vitest setup file (e.g., vitest.setup.ts):
+Vitest's compatibility extends to Jest’s extended matchers, like those from [jest-extended](https://www.npmjs.com/package/jest-extended). To use them, simply create a Vitest setup file (e.g., vitest.setup.ts):
 
 ```ts
 import "@testing-library/jest-dom/vitest";
