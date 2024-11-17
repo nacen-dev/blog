@@ -1,0 +1,162 @@
+---
+title: "Using Vitest"
+publishedAt: "2024-11-18"
+summary: "Using Vitest as a testing framework"
+tags: ["Testing", "Unit Testing", "Vitest", "JavaScript Testing", "JavaScript"]
+---
+
+# Why Vitest?
+
+Built with performance, simplicity, and compatibility in mind. Vitest brings a variety of benefits to the table.
+
+## A Native Test Runner for Vite
+
+One of the main advantages of Vitest is its unified configuration with [Vite](https://vite.dev/).
+
+Vitest reads your root **vite.config.ts** file to match the plugins and setup of your Vite app.
+
+This means that any plugins you've defined for Vite are automatically applied to the test environment. For example, if you configure specific transpilation rules or add plugins in your Vite setup, Vitest seamlessly picks up on these settings, eliminating the need for separate test environment configuration.
+
+By sharing the same development server and configuration as Vite, Vitest provides near-instant feedback, thanks to Hot Module Replacement (HMR).
+
+## Native ESM Support
+
+One challenge with traditional test runners, such as Jest, is their limited support for ES Modules (ESM).
+
+While working on this blog, I encountered a scenario where I needed to use a Node package that was ESM-only, meaning it only supported ES module syntax (import/export). Attempting to use Jest in this setup was frustrating, as Jest ships with experimental support for ESM at the time.
+
+After searching GitHub issues and experimenting with various workarounds, I eventually got Jest to resolve the ESM modules. However, the process was cumbersome and unreliable. Switching to Vitest completely eliminated the need for such manual configurations, making the process smooth and hassle-free.
+
+## Excellent Documentation
+
+When it comes to adopting new tools, documentation is a crucial factor in ensuring developers can quickly understand and implement a solution.
+
+Their [documentation](https://vitest.dev/guide/) is easy to follow and provides the right amount of example to understand a certain topic.
+
+## Compatibility with the Jest Ecosystem
+
+Vitest provides a compatible API that allows you to use it as a drop-in replacement in most projects.
+
+### Comparison Jest vs Vitest
+
+Here’s a simple comparison using React Testing Library:
+
+Jest
+
+```tsx
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import { BlogPosts } from "./blog-posts";
+
+describe("BlogPosts", async () => {
+  it("should render no blog post found when there are no blog posts", () => {
+    render(<BlogPosts blogPosts={[]} />);
+    expect(screen.getByText(/no blog post found/i)).toBeInTheDocument();
+  });
+});
+```
+
+Vitest
+
+```tsx
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { BlogPosts } from "./blog-posts";
+
+describe("BlogPosts", async () => {
+  it("should render no blog post found when there are no blog posts", () => {
+    render(<BlogPosts blogPosts={[]} />);
+    expect(screen.getByText(/no blog post found/i)).toBeInTheDocument();
+  });
+});
+```
+
+As you can see there is not quite a lot of difference in the syntax, so migrating to Vitest is actually very easy to do.
+
+### Vitest compatibility with Jest's extended matchers
+
+Vitest's compatibility extends to Jest’s extended matchers, like those from jest-extended. To use them, simply create a Vitest setup file (e.g., vitest.setup.ts):
+
+```ts
+import "@testing-library/jest-dom/vitest";
+import * as matchers from "jest-extended";
+expect.extend(matchers);
+```
+
+Then, include this setup file in your Vitest config:
+
+```ts
+import react from "@vitejs/plugin-react";
+import path from "path";
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./vitest.setup.ts"],
+    coverage: {
+      provider: "v8",
+    },
+  },
+});
+```
+
+This allows you to use matchers from [jest-extended](https://www.npmjs.com/package/jest-extended), like **toBeDateString()**, directly in your tests:
+
+```tsx
+import { formatDate } from "@/lib/dateUtils";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { BlogPosts } from "./blog-posts";
+
+describe("BlogPosts", async () => {
+  const testDataList: MDXData[] = [
+    {
+      slug: "test-1",
+      content: { props: {}, key: "Test 1", type: "" },
+      metadata: {
+        title: "Test 1",
+        publishedAt: "2024-09-20",
+        summary: "This is a test meta data # 1",
+      },
+    },
+    {
+      slug: "test-2",
+      content: { props: {}, key: "Test 2", type: "" },
+      metadata: {
+        title: "Test 2",
+        publishedAt: "2024-09-20",
+        summary: "This is a test meta data # 2",
+      },
+    },
+  ];
+
+  it("should have a valid publishedAt", () => {
+    render(<BlogPosts blogPosts={testDataList} />);
+    for (const testData of testDataList) {
+      const publishedAt = screen.getAllByText(
+        formatDate(testData.metadata.publishedAt)
+      );
+
+      expect(publishedAt[0].textContent).toBeDateString();
+    }
+  });
+});
+```
+
+## Lightweight
+
+Vitest stays lightweight by carefully choosing its dependencies (or directly inlining needed pieces).
+
+The term "lightweight" when applied to Vitest doesn't refer to the size of the package in terms of disk space but to other factors like speed, performance, and configuration complexity.
+
+- Even though Vitest's initial install size might be larger, its runtime performance is optimized to execute tests much quicker, leading to a faster development feedback loop.
+- The simplicity of using vite config if it exists or even setting up vitest's own config makes it feel "lighter" because you don't have to configure as much before running your tests.
+- Optimized for Vite and since Vitest leverages Vite (which is built on esbuild), the integration allows for super-fast module resolution and hot module replacement (HMR) during tests
+
+## Conclusion
+
+Vitest is a **lightweight** and **fast** test runner that seamlessly integrates with modern web tools like Vite, offering **native ESM support** without the need for complex configuration. It’s fully **compatible with Jest**, making it an excellent drop-in replacement with minimal changes required. With its **excellent documentation**, Vitest makes it easy to get started and scale your testing setup efficiently.
+
+Vitest offers many powerful features beyond what was covered here. To explore more, check out their full [documentation](https://vitest.dev/guide/features.html).
