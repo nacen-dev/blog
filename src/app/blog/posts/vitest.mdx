@@ -99,6 +99,11 @@ export default defineConfig({
       provider: "v8",
     },
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });
 ```
 
